@@ -7,4 +7,5 @@
     <color name="question_background">#9C27B0</color>
     <color name="answer_background">#4CAF50</color>
     <color name="proposal_background">#2196F3</color>
+    <color name="like">#F44336</color>
 </resources>
