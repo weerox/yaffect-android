@@ -4,5 +4,5 @@
     <corners
         android:radius="0dp"
         android:bottomRightRadius="@dimen/cardview_default_radius" />
-    <stroke android:color="@color/yes" android:width="4dp" />
+    <solid android:color="@color/yes" />
 </shape>

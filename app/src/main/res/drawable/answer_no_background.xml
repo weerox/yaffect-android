@@ -2,6 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
     <corners
+        android:radius="0dp"
         android:bottomLeftRadius="@dimen/cardview_default_radius" />
-    <solid android:color="@color/no"></solid>
+    <stroke android:color="@color/no" android:width="4dp"/>
 </shape>

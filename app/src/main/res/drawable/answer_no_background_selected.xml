@@ -3,6 +3,6 @@
     android:shape="rectangle">
     <corners
         android:radius="0dp"
-        android:bottomRightRadius="@dimen/cardview_default_radius" />
-    <stroke android:color="@color/yes" android:width="4dp" />
+        android:bottomLeftRadius="@dimen/cardview_default_radius" />
+    <solid android:color="@color/no" />
 </shape>
