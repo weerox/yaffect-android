@@ -1,6 +1,7 @@
 package se.yaffect.android.view;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -59,9 +60,9 @@ public class QuestionView extends LinearLayoutCompat {
             this.liked = liked;
 
             if (liked) {
-                buttonLike.setImageResource(R.drawable.ic_like);
+                buttonLike.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_like));
             } else {
-                buttonLike.setImageResource(R.drawable.ic_like_outline);
+                buttonLike.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_like_outline));
             }
         }
     }
