@@ -1,25 +1,23 @@
 package se.yaffect.android.view;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.support.v7.widget.CardView;
-import android.text.TextPaint;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import se.yaffect.android.R;
 
-public class QuestionView extends LinearLayout {
+public class QuestionView extends LinearLayoutCompat {
 
-    private TextView question;
-    private TextView answer;
+    private ImageView buttonLike;
+    private TextView textTimeAsked;
+    private TextView textTimeAnswered;
+    private TextView textQuestion;
+    private TextView textAnswer;
+
+    private boolean liked = false;
 
     public QuestionView(Context context) {
         super(context);
@@ -45,7 +43,26 @@ public class QuestionView extends LinearLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
 
-        question = (TextView) this.findViewById(R.id.text_question);
-        answer = (TextView) this.findViewById(R.id.text_answer);
+        buttonLike = (ImageView) this.findViewById(R.id.button_like);
+        textTimeAsked = (TextView) this.findViewById(R.id.text_time_asked);
+        textTimeAnswered = (TextView) this.findViewById(R.id.text_time_answered);
+        textQuestion = (TextView) this.findViewById(R.id.text_question);
+        textAnswer = (TextView) this.findViewById(R.id.text_answer);
+    }
+
+    public boolean isLiked() {
+        return liked;
+    }
+
+    public void setLiked(boolean liked) {
+        if (this.liked != liked) {
+            this.liked = liked;
+
+            if (liked) {
+                buttonLike.setImageResource(R.drawable.ic_like);
+            } else {
+                buttonLike.setImageResource(R.drawable.ic_like_outline);
+            }
+        }
     }
 }
