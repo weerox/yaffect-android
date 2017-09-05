@@ -8,17 +8,20 @@
     android:layout_marginBottom="8dp"
     app:cardCornerRadius="@dimen/cardview_default_radius">
 
-    <RelativeLayout android:layout_margin="16dp"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/button_like"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="16dp"
             android:src="@drawable/ic_like_outline"
+            android:contentDescription="@string/desc_like"
             />
     </RelativeLayout>
     <LinearLayout
@@ -31,6 +34,8 @@
             android:layout_height="match_parent"
             android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="56dp"
             android:layout_marginRight="56dp"
             android:gravity="center"
             android:orientation="horizontal">
@@ -39,13 +44,15 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginRight="8dp"
+                android:layout_marginEnd="8dp"
                 android:gravity="center"
                 android:background="@drawable/ic_answer_background">
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_answer"/>
+                    android:src="@drawable/ic_answer"
+                    android:contentDescription="@string/desc_ic_answer"/>
             </LinearLayout>
 
             <LinearLayout
@@ -55,14 +62,14 @@
                 android:layout_gravity="center">
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/text_time_asked"
                     android:layout_width="wrap_content"
                     android:layout_height="14dp"
                     android:layout_marginBottom="4dp"
                     android:text="Asked" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/text_time_answered"
                     android:layout_width="wrap_content"
                     android:layout_height="14dp"
                     android:text="Answered" />
@@ -71,6 +78,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/text_question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -78,7 +86,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginTop="12dp"
             android:text="Question"
-            tools:textAppearance="@style/TextAppearance.AppCompat.Title" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
         <ListView
             android:layout_width="match_parent"
