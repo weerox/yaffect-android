@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +20,10 @@ public class QuestionView extends LinearLayoutCompat {
     private TextView textAnswer;
 
     private boolean liked = false;
+    private String timeAsked;
+    private String timeAnswered;
+    String question;
+    String answer;
 
     public QuestionView(Context context) {
         super(context);
@@ -49,6 +54,13 @@ public class QuestionView extends LinearLayoutCompat {
         textTimeAnswered = (TextView) this.findViewById(R.id.text_time_answered);
         textQuestion = (TextView) this.findViewById(R.id.text_question);
         textAnswer = (TextView) this.findViewById(R.id.text_answer);
+
+        buttonLike.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setLiked(!isLiked()); // toggles the boolean to the other value
+            }
+        });
     }
 
     public boolean isLiked() {
@@ -65,5 +77,41 @@ public class QuestionView extends LinearLayoutCompat {
                 buttonLike.setImageDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_like_outline));
             }
         }
+    }
+
+    public void setTimeAsked(String timeAsked) {
+        this.timeAsked = timeAsked;
+        textTimeAsked.setText(timeAsked);
+    }
+
+    public String getTimeAsked() {
+        return timeAsked;
+    }
+
+    public void setTimeAnswered(String timeAnswered) {
+        this.timeAnswered = timeAnswered;
+        textTimeAnswered.setText(timeAnswered);
+    }
+
+    public String getTimeAnswered() {
+        return timeAnswered;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+        textQuestion.setText(question);
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+        textAnswer.setText(answer);
+    }
+
+    public String getAnswer() {
+        return answer;
     }
 }
