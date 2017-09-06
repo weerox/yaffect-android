@@ -27,6 +27,8 @@ public class QuestionView extends LinearLayoutCompat {
     private String question;
     private String answer;
 
+    private UUID uuid;
+
     public QuestionView(Context context) {
         super(context);
         initializeView(context);
@@ -115,5 +117,13 @@ public class QuestionView extends LinearLayoutCompat {
 
     public String getAnswer() {
         return answer;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    public UUID getUuid() {
+        return uuid;
     }
 }
