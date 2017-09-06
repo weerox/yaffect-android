@@ -105,7 +105,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_no"
-                    android:tint="@color/no"/>
+                    android:tint="@color/no"
+                    android:contentDescription="@string/desc_button_no"/>
             </LinearLayout>
             <LinearLayout
                 android:id="@+id/button_yes"
@@ -119,7 +120,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_yes"
-                    android:tint="@color/yes" />
+                    android:tint="@color/yes"
+                    android:contentDescription="@string/desc_button_yes"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

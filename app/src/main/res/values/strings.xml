@@ -3,4 +3,6 @@
     <string name="desc_like">Like Icon</string>
     <string name="desc_ic_question">Question Icon</string>
     <string name="desc_ic_answer">Answer Icon</string>
+    <string name="desc_button_no">No Button</string>
+    <string name="desc_button_yes">Yes Button</string>
 </resources>
