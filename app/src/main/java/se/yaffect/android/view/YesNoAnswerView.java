@@ -1,5 +1,7 @@
 package se.yaffect.android.view;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -12,6 +14,7 @@ import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -94,25 +97,62 @@ public class YesNoAnswerView extends AnswerView {
 
     private void unselectAll() {
         if (state == State.NO) {
-            buttonNo.setBackgroundResource(R.drawable.answer_no_background);
-            iconNo.setColorFilter(ContextCompat.getColor(getContext(), R.color.no)); // set tint
+            ObjectAnimator colorAnimator = ObjectAnimator.ofObject(
+                    buttonNo.getBackground().mutate(),
+                    "tint",
+                    new ArgbEvaluator(),
+                    ContextCompat.getColor(getContext(), R.color.no),
+                    Color.WHITE
+            );
+            colorAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+            colorAnimator.start();
+
+            iconNo.setColorFilter(ContextCompat.getColor(getContext(), R.color.no));
+
         } else if (state == State.YES) {
-            buttonYes.setBackgroundResource(R.drawable.answer_yes_background);
-            iconYes.setColorFilter(ContextCompat.getColor(getContext(), R.color.yes)); // set tint
+            ObjectAnimator colorAnimator = ObjectAnimator.ofObject(
+                    buttonYes.getBackground().mutate(),
+                    "tint",
+                    new ArgbEvaluator(),
+                    ContextCompat.getColor(getContext(), R.color.yes),
+                    Color.WHITE
+            );
+            colorAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+            colorAnimator.start();
+
+            iconYes.setColorFilter(ContextCompat.getColor(getContext(), R.color.yes));
         }
 
         this.state = State.UNSELECTED;
     }
 
     private void selectNo() {
-        buttonNo.setBackgroundResource(R.drawable.answer_no_background_selected);
+        ObjectAnimator colorAnimator = ObjectAnimator.ofObject(
+                buttonNo.getBackground().mutate(),
+                "tint",
+                new ArgbEvaluator(),
+                Color.WHITE,
+                ContextCompat.getColor(getContext(), R.color.no)
+        );
+        colorAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        colorAnimator.start();
+
         iconNo.setColorFilter(Color.WHITE);
 
         this.state = State.NO;
     }
 
     private void selectYes() {
-        buttonYes.setBackgroundResource(R.drawable.answer_yes_background_selected);
+        ObjectAnimator colorAnimator = ObjectAnimator.ofObject(
+                buttonYes.getBackground().mutate(),
+                "tint",
+                new ArgbEvaluator(),
+                Color.WHITE,
+                ContextCompat.getColor(getContext(), R.color.yes)
+        );
+        colorAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
+        colorAnimator.start();
+
         iconYes.setColorFilter(Color.WHITE);
 
         this.state = State.YES;
