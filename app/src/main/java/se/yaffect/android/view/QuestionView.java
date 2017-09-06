@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.UUID;
+
 import se.yaffect.android.R;
 
 public class QuestionView extends LinearLayoutCompat {
@@ -22,8 +24,8 @@ public class QuestionView extends LinearLayoutCompat {
     private boolean liked = false;
     private String timeAsked;
     private String timeAnswered;
-    String question;
-    String answer;
+    private String question;
+    private String answer;
 
     public QuestionView(Context context) {
         super(context);
