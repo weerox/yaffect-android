@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
@@ -97,7 +98,7 @@ public class YesNoAnswerView extends AnswerView {
             iconNo.setColorFilter(ContextCompat.getColor(getContext(), R.color.no)); // set tint
         } else if (state == State.YES) {
             buttonYes.setBackgroundResource(R.drawable.answer_yes_background);
-            iconNo.setColorFilter(ContextCompat.getColor(getContext(), R.color.yes)); // set tint
+            iconYes.setColorFilter(ContextCompat.getColor(getContext(), R.color.yes)); // set tint
         }
 
         this.state = State.UNSELECTED;
@@ -105,12 +106,16 @@ public class YesNoAnswerView extends AnswerView {
 
     private void selectNo() {
         buttonNo.setBackgroundResource(R.drawable.answer_no_background_selected);
-        iconNo.setColorFilter(null); // remove tint
+        iconNo.setColorFilter(Color.WHITE);
+
+        this.state = State.NO;
     }
 
     private void selectYes() {
         buttonYes.setBackgroundResource(R.drawable.answer_yes_background_selected);
-        iconYes.setColorFilter(null); // remove tint
+        iconYes.setColorFilter(Color.WHITE);
+
+        this.state = State.YES;
     }
 }
 
