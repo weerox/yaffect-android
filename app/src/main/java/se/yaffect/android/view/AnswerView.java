@@ -44,10 +44,7 @@ public class AnswerView extends LinearLayoutCompat {
         super(context, attrs, defStyle);
     }
 
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
-
+    protected void init() {
         buttonLike = (ImageView) this.findViewById(R.id.button_like);
         textTimeAsked = (TextView) this.findViewById(R.id.text_time_asked);
         textTimeAnswered = (TextView) this.findViewById(R.id.text_time_answered);

@@ -25,27 +25,22 @@ public class YesNoAnswerView extends AnswerView {
 
     public YesNoAnswerView(Context context) {
         super(context);
-        initializeView(context);
+        init(context);
     }
 
     public YesNoAnswerView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initializeView(context);
+        init(context);
     }
 
     public YesNoAnswerView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        initializeView(context);
+        init(context);
     }
 
-    private void initializeView(Context context) {
+    private void init(Context context) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         layoutInflater.inflate(R.layout.view_answer_yes_no, this);
-    }
-
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
 
         buttonNo = (LinearLayout) this.findViewById(R.id.button_no);
         buttonYes = (LinearLayout) this.findViewById(R.id.button_yes);
@@ -73,6 +68,8 @@ public class YesNoAnswerView extends AnswerView {
                 }
             }
         });
+
+        super.init();
     }
 
     public void setState(State state) {
