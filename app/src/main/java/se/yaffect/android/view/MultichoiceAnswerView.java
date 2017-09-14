@@ -2,7 +2,10 @@ package se.yaffect.android.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -36,7 +39,7 @@ public class MultichoiceAnswerView extends AnswerView {
         init(context);
     }
 
-    private void init(final Context context) {
+    private void init(Context context) {
         multichoiceAdapter = new MultichoiceAdapter(context, alternatives);
 
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
