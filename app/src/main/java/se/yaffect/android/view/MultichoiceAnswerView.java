@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class MultichoiceAnswerView extends AnswerView {
     private MultichoiceAdapter multichoiceAdapter;
 
     private ArrayList<String> alternatives;
+    private ArrayList<Integer> checked;
 
     public MultichoiceAnswerView(Context context, ArrayList<String> alternatives) {
         super(context);
@@ -47,6 +49,21 @@ public class MultichoiceAnswerView extends AnswerView {
 
         listAlternatives = (ListView) this.findViewById(R.id.list_alternatives);
         listAlternatives.setAdapter(multichoiceAdapter);
+        listAlternatives.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                    CheckBox checkBox = (CheckBox) view;
+                if (checkBox.isChecked()) {
+                    if (!checked.contains(position)) {
+                        checked.add(position);
+                    }
+                } else {
+                    if (checked.contains(position)) {
+                        checked.remove(position);
+                    }
+                }
+            }
+        });
 
         super.init();
     }

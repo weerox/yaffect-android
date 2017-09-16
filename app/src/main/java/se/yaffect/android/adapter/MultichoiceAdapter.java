@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 
@@ -20,15 +21,22 @@ public class MultichoiceAdapter extends ArrayAdapter<String> {
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         String alternative = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_multichoice, parent, false);
         }
 
-        CheckBox checkBoxAlternative = (CheckBox) convertView.findViewById(R.id.checkBox_alternative);
+        final CheckBox checkBoxAlternative = (CheckBox) convertView.findViewById(R.id.checkBox_alternative);
         checkBoxAlternative.setText(alternative);
+        checkBoxAlternative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ListView listView = (ListView) view.getParent().getParent();
+                listView.performItemClick(checkBoxAlternative, position, listView.getItemIdAtPosition(position));
+            }
+        });
 
         return convertView;
     }
