@@ -21,7 +21,7 @@ public class MultichoiceAnswerView extends AnswerView {
     private MultichoiceAdapter multichoiceAdapter;
 
     private ArrayList<String> alternatives;
-    private ArrayList<Integer> checked;
+    private ArrayList<Integer> checked = new ArrayList<Integer>();
 
     public MultichoiceAnswerView(Context context, ArrayList<String> alternatives) {
         super(context);
@@ -59,7 +59,7 @@ public class MultichoiceAnswerView extends AnswerView {
                     }
                 } else {
                     if (checked.contains(position)) {
-                        checked.remove(position);
+                        checked.remove(Integer.valueOf(position)); // If we wouldn't do Integer.valueof() the ArrayList would think that we would want to remove the object at position 'position', instead of the object 'position'
                     }
                 }
             }

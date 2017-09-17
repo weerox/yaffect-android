@@ -33,7 +33,7 @@ public class MultichoiceAdapter extends ArrayAdapter<String> {
         checkBoxAlternative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ListView listView = (ListView) view.getParent().getParent();
+                ListView listView = (ListView) view.getParent(); // This will get the ListView
                 listView.performItemClick(checkBoxAlternative, position, listView.getItemIdAtPosition(position));
             }
         });
