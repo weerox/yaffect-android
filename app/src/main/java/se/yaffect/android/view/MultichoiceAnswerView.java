@@ -16,28 +16,23 @@ import se.yaffect.android.adapter.MultichoiceAdapter;
 
 public class MultichoiceAnswerView extends AnswerView {
 
-    private ListView listAlternatives;
-
     private MultichoiceAdapter multichoiceAdapter;
 
-    private ArrayList<String> alternatives;
+    private ArrayList<String> alternatives = new ArrayList<String>();
     private ArrayList<Integer> checked = new ArrayList<Integer>();
 
-    public MultichoiceAnswerView(Context context, ArrayList<String> alternatives) {
+    public MultichoiceAnswerView(Context context) {
         super(context);
-        this.alternatives = alternatives;
         init(context);
     }
 
-    public MultichoiceAnswerView(Context context, AttributeSet attrs, ArrayList<String> alternatives) {
+    public MultichoiceAnswerView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.alternatives = alternatives;
         init(context);
     }
 
-    public MultichoiceAnswerView(Context context, AttributeSet attrs, int defStyle, ArrayList<String> alternatives) {
+    public MultichoiceAnswerView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        this.alternatives = alternatives;
         init(context);
     }
 
@@ -47,7 +42,7 @@ public class MultichoiceAnswerView extends AnswerView {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         layoutInflater.inflate(R.layout.view_answer_multichoice, this);
 
-        listAlternatives = (ListView) this.findViewById(R.id.list_alternatives);
+        ListView listAlternatives = (ListView) this.findViewById(R.id.list_alternatives);
         listAlternatives.setAdapter(multichoiceAdapter);
         listAlternatives.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -70,5 +65,9 @@ public class MultichoiceAnswerView extends AnswerView {
 
     public void addAlternative(String alternative) {
         multichoiceAdapter.add(alternative);
+    }
+
+    public void addAlternatives(ArrayList<String> alternatives) {
+        multichoiceAdapter.addAll(alternatives);
     }
 }
