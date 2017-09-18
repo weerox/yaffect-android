@@ -88,13 +88,11 @@
             android:text="Question"
             android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-        <ListView
+        <LinearLayout
             android:id="@+id/list_alternatives"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:divider="@null"
-            android:dividerHeight="0dp" />
+            android:orientation="vertical"/>
 
     </LinearLayout>
 

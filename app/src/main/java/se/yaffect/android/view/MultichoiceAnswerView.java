@@ -2,21 +2,16 @@ package se.yaffect.android.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.CheckBox;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
 import se.yaffect.android.R;
-import se.yaffect.android.adapter.MultichoiceAdapter;
 
 public class MultichoiceAnswerView extends AnswerView {
-
-    private MultichoiceAdapter multichoiceAdapter;
+    private LinearLayout listAlternatives;
 
     private ArrayList<String> alternatives = new ArrayList<String>();
     private ArrayList<Integer> checked = new ArrayList<Integer>();
@@ -37,37 +32,27 @@ public class MultichoiceAnswerView extends AnswerView {
     }
 
     private void init(Context context) {
-        multichoiceAdapter = new MultichoiceAdapter(context, alternatives);
-
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         layoutInflater.inflate(R.layout.view_answer_multichoice, this);
 
-        ListView listAlternatives = (ListView) this.findViewById(R.id.list_alternatives);
-        listAlternatives.setAdapter(multichoiceAdapter);
-        listAlternatives.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                    CheckBox checkBox = (CheckBox) view;
-                if (checkBox.isChecked()) {
-                    if (!checked.contains(position)) {
-                        checked.add(position);
-                    }
-                } else {
-                    if (checked.contains(position)) {
-                        checked.remove(Integer.valueOf(position)); // If we wouldn't do Integer.valueof() the ArrayList would think that we would want to remove the object at position 'position', instead of the object 'position'
-                    }
-                }
-            }
-        });
+        listAlternatives = (LinearLayout) this.findViewById(R.id.list_alternatives);
 
         super.init();
     }
 
     public void addAlternative(String alternative) {
-        multichoiceAdapter.add(alternative);
+        LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        CheckBox checkBox = (CheckBox) layoutInflater.inflate(R.layout.item_multichoice, null);
+
+        checkBox.setText(alternative);
+
+        // TODO: add onClickListener
+
+        listAlternatives.addView(checkBox);
     }
 
     public void addAlternatives(ArrayList<String> alternatives) {
-        multichoiceAdapter.addAll(alternatives);
+        for (String alternative : alternatives)
+            addAlternative(alternative);
     }
 }
