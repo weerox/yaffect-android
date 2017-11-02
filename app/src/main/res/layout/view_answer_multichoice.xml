@@ -81,7 +81,7 @@
             android:id="@+id/text_question"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="6dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="12dp"
@@ -92,7 +92,8 @@
             android:id="@+id/list_alternatives"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
+            android:orientation="vertical"
+            android:layout_marginBottom="8dp"/>
 
     </LinearLayout>
 
