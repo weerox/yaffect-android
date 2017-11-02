@@ -108,6 +108,7 @@ public class QuestionView extends LinearLayoutCompat {
     public void setAnswer(String answer) {
         this.answer = answer;
         textAnswer.setText(answer);
+        textAnswer.setVisibility(VISIBLE);
     }
 
     public String getAnswer() {
