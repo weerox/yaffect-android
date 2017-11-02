@@ -4,6 +4,6 @@
         android:drawable="@drawable/ic_checkbox_checked"
         android:state_checked="true" />
     <item
-        android:drawable="@drawable/ic_checkbox_unckecked"
+        android:drawable="@drawable/ic_checkbox_unchecked"
         android:state_checked="false" />
 </selector>
