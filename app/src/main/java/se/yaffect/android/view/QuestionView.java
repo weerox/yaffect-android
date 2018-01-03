@@ -46,7 +46,7 @@ public class QuestionView extends LinearLayoutCompat {
 
     private void init(Context context) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        layoutInflater.inflate(R.layout.view_question, this);
+        layoutInflater.inflate(R.layout.view_question, this, true);
 
         buttonLike = (ImageView) this.findViewById(R.id.button_like);
         textTimeAsked = (TextView) this.findViewById(R.id.text_time_asked);

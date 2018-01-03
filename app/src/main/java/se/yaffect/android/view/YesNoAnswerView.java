@@ -40,7 +40,7 @@ public class YesNoAnswerView extends AnswerView {
 
     private void init(Context context) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        layoutInflater.inflate(R.layout.view_answer_yes_no, this);
+        layoutInflater.inflate(R.layout.view_answer_yes_no, this, true);
 
         buttonNo = (LinearLayout) this.findViewById(R.id.button_no);
         buttonYes = (LinearLayout) this.findViewById(R.id.button_yes);
