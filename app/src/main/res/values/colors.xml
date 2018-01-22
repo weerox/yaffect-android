@@ -2,6 +2,15 @@
 <resources>
     <color name="primary">#2196F3</color>
     <color name="primary_dark">#1976D2</color>
-    <color name="accent">#D500F9</color>
+    <color name="accent">#3D5AFE</color>
     <color name="background">#FAFAFA</color>
+
+    <color name="question_background">#9C27B0</color>
+    <color name="answer_background">#4CAF50</color>
+    <color name="proposal_background">#2196F3</color>
+
+    <color name="like">#F44336</color>
+
+    <color name="no">#F44336</color>
+    <color name="yes">#8BC34A</color>
 </resources>
