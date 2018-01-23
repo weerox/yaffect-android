@@ -1,8 +1,17 @@
 <resources>
     <string name="app_name">Yaffect</string>
+
+    <!-- ImageView description strings -->
     <string name="desc_like">Like Icon</string>
     <string name="desc_ic_question">Question Icon</string>
     <string name="desc_ic_answer">Answer Icon</string>
     <string name="desc_button_no">No Button</string>
     <string name="desc_button_yes">Yes Button</string>
+    <string name="desc_ic_yaffect">Yaffect Logo</string>
+
+    <!-- Login screen strings -->
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_login">Log In</string>
+    <string name="login_signup">Sign Up</string>
 </resources>
