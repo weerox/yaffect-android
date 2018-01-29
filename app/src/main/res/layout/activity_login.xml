@@ -30,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/login_email"
                 android:inputType="textEmailAddress"
+                android:imeOptions="actionNext"
                 android:maxLines="1"
                 android:singleLine="true" />
 
@@ -49,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/login_password"
                 android:inputType="textPassword"
+                android:imeOptions="actionDone"
                 android:maxLines="1"
                 android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
@@ -58,6 +60,7 @@
             android:layout_height="16dp" />
 
         <Button
+            android:id="@+id/button_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/login_login"
