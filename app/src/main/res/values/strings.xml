@@ -12,6 +12,6 @@
     <!-- Login screen strings -->
     <string name="login_email">Email</string>
     <string name="login_password">Password</string>
-    <string name="login_login">Log In</string>
-    <string name="login_signup">Sign Up</string>
+    <string name="login_signin">Sign In</string>
+    <string name="login_register">Register</string>
 </resources>
