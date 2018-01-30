@@ -10,4 +10,9 @@ public class RefreshToken {
     public String getRefreshToken() {
         return refreshToken;
     }
+
+    @Override
+    public String toString() {
+        return refreshToken;
+    }
 }
