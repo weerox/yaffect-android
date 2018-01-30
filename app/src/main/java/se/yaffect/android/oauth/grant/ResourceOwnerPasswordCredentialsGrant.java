@@ -23,7 +23,6 @@ public class ResourceOwnerPasswordCredentialsGrant {
     public AccessToken getAccessToken(String username, String password) {
         try {
             String requestBody = "grant_type=password&username=" + URLEncoder.encode(username, "UTF-8") + "&password=" + URLEncoder.encode(password, "UTF-8");
-            long requestBodyLength = requestBody.getBytes().length;
             URL url = new URL(BuildConfig.URL_OAUTH2 + "/token");
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
 
