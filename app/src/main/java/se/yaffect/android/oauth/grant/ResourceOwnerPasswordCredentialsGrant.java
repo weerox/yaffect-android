@@ -1,7 +1,10 @@
 package se.yaffect.android.oauth.grant;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
+
+import org.json.JSONObject;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -14,9 +17,10 @@ import java.util.Properties;
 
 import se.yaffect.android.R;
 import se.yaffect.android.oauth.ClientCredentials;
+import se.yaffect.android.oauth.exception.OAuthException;
 import se.yaffect.android.oauth.token.AccessToken;
 
-public class ResourceOwnerPasswordCredentialsGrant {
+public class ResourceOwnerPasswordCredentialsGrant extends AsyncTask<String, Integer, String> {
 
     private Context context;
     private ClientCredentials credentials;
@@ -27,12 +31,18 @@ public class ResourceOwnerPasswordCredentialsGrant {
     }
 
     public AccessToken getAccessToken(String username, String password) {
+        this.execute(username, password).get();
+        return null;
+    }
+
+    @Override
+    protected String doInBackground(String... loginCredentials) {
         try {
             InputStream rawResource = context.getResources().openRawResource(R.raw.app);
             Properties properties = new Properties();
             properties.load(rawResource);
 
-            String requestBody = "grant_type=password&username=" + URLEncoder.encode(username, "UTF-8") + "&password=" + URLEncoder.encode(password, "UTF-8");
+            String requestBody = "grant_type=password&username=" + URLEncoder.encode(loginCredentials[0], "UTF-8") + "&password=" + URLEncoder.encode(loginCredentials[1], "UTF-8");
             URL url = new URL(properties.getProperty("URL_OAUTH2") + "/token");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -52,5 +62,11 @@ public class ResourceOwnerPasswordCredentialsGrant {
             exception.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    protected void onPostExecute(String s) {
+        throw new OAuthException(new JSONObject("{}"));
+        super.onPostExecute(s);
     }
 }
