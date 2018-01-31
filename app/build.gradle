@@ -16,10 +16,6 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-
-        debug {
-            buildConfigField("String", "URL_OAUTH2", "\"http://localhost:81\"")
-        }
     }
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
