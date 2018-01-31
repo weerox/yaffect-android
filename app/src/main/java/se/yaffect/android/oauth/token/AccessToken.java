@@ -26,6 +26,8 @@ public class AccessToken {
 
             if (response.has("refresh_token"))
                 refreshToken = new RefreshToken(response.getString("refresh_token"));
+            else
+                refreshToken = null;
 
         } catch (JSONException exception) {
             exception.printStackTrace();
@@ -57,6 +59,10 @@ public class AccessToken {
 
     public RefreshToken getRefreshToken() {
         return refreshToken;
+    }
+
+    public boolean hasRefreshToken() {
+        return refreshToken == null ? false : true;
     }
 
     @Override
