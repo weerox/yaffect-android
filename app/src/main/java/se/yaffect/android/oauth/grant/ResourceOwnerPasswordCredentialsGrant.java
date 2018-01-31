@@ -1,16 +1,16 @@
 package se.yaffect.android.oauth.grant;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Properties;
-
-import javax.net.ssl.HttpsURLConnection;
 
 import se.yaffect.android.R;
 import se.yaffect.android.oauth.ClientCredentials;
@@ -34,7 +34,7 @@ public class ResourceOwnerPasswordCredentialsGrant {
 
             String requestBody = "grant_type=password&username=" + URLEncoder.encode(username, "UTF-8") + "&password=" + URLEncoder.encode(password, "UTF-8");
             URL url = new URL(properties.getProperty("URL_OAUTH2") + "/token");
-            HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
             connection.setDoOutput(true);
             connection.setRequestMethod("POST");
