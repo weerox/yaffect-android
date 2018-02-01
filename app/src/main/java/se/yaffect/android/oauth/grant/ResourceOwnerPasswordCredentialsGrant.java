@@ -60,7 +60,7 @@ public class ResourceOwnerPasswordCredentialsGrant extends AsyncTask<String, Int
             throw new OAuthException(jsonResponse);
         }
 
-        return new AccessToken(jsonResponse);
+        return new AccessToken(context, jsonResponse);
     }
 
     @Override
