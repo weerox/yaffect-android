@@ -1,5 +1,6 @@
 package se.yaffect.android;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -57,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
         try {
             ResourceOwnerPasswordCredentialsGrant grant = new ResourceOwnerPasswordCredentialsGrant(this, new ClientCredentials(this));
             AccessToken accessToken = grant.getAccessToken(email, password);
+
+            startActivity(new Intent(this, MainActivity.class));
         } catch (OAuthException exception) {
             if (exception.getError().equals("unauthenticated_user")) {
                 inputPassword.setError("Error authenticating!");
