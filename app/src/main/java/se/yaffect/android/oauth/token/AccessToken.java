@@ -1,10 +1,15 @@
 package se.yaffect.android.oauth.token;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Calendar;
 import java.util.TimeZone;
+
+import se.yaffect.android.R;
 
 public class AccessToken {
     private String accessToken;
@@ -12,6 +17,30 @@ public class AccessToken {
     private int expiresIn;
     private Calendar expireTime;
     private RefreshToken refreshToken;
+
+    public AccessToken(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.preferences_oauth), Context.MODE_PRIVATE);
+        accessToken = sharedPreferences.getString("access_token", null);
+
+        switch (sharedPreferences.getString("token_type", "")) {
+            case "Bearer":
+                tokenType = TokenType.BEARER;
+                break;
+            case "":
+            default:
+                tokenType = TokenType.BEARER;
+                break;
+        }
+
+        expiresIn = sharedPreferences.getInt("expires_in", 0);
+
+        expireTime = calculateExpireTime(expiresIn);
+
+        if (sharedPreferences.contains("refresh_token"))
+            refreshToken = new RefreshToken(sharedPreferences.getString("refresh_token", null));
+        else
+            refreshToken = null;
+    }
 
     public AccessToken(JSONObject response) {
         try {
@@ -86,6 +115,11 @@ public class AccessToken {
 
     public boolean hasRefreshToken() {
         return refreshToken == null ? false : true;
+    }
+
+    public static boolean accessTokenExists(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.preferences_oauth), Context.MODE_PRIVATE);
+        return sharedPreferences.contains("access_token");
     }
 
     @Override
