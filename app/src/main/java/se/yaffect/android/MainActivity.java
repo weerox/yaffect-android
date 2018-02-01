@@ -1,11 +1,11 @@
 package se.yaffect.android;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
+
+import se.yaffect.android.oauth.token.AccessToken;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,9 +13,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences sharedPreferences = getPreferences(Context.MODE_PRIVATE);
-        if (!sharedPreferences.contains("access_token")) {
+        if (!AccessToken.accessTokenExists(this)) {
             startActivity(new Intent(this, LoginActivity.class));
+        } else {
+            // TODO: access token exists
         }
 
         setContentView(R.layout.activity_main);
