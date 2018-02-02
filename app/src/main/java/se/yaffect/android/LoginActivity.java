@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -29,6 +30,9 @@ public class LoginActivity extends AppCompatActivity {
         inputEmail = (TextInputLayout) findViewById(R.id.input_email);
         inputPassword = (TextInputLayout) findViewById(R.id.input_password);
         buttonLogin = (Button) findViewById(R.id.button_login);
+
+        // replace characters with discs
+        inputPassword.getEditText().setTransformationMethod(PasswordTransformationMethod.getInstance());
 
         inputPassword.getEditText().setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
