@@ -3,6 +3,7 @@ package se.yaffect.android;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import se.yaffect.android.oauth.token.AccessToken;
@@ -16,11 +17,11 @@ public class MainActivity extends AppCompatActivity {
         if (!AccessToken.accessTokenExists(this)) {
             startActivity(new Intent(this, LoginActivity.class));
         } else {
+            setContentView(R.layout.activity_main);
+
+            LinearLayout main = (LinearLayout) this.findViewById(R.id.layout_main);
+            
             // TODO: access token exists
         }
-
-        setContentView(R.layout.activity_main);
-
-        LinearLayout main = (LinearLayout) this.findViewById(R.id.layout_main);
     }
 }
