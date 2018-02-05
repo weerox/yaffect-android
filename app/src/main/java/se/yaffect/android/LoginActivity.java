@@ -1,18 +1,25 @@
 package se.yaffect.android;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+
+import se.yaffect.android.oauth.ClientCredentials;
+import se.yaffect.android.oauth.exception.OAuthException;
+import se.yaffect.android.oauth.grant.ResourceOwnerPasswordCredentialsGrant;
+import se.yaffect.android.oauth.token.AccessToken;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText email;
-    private EditText password;
+    private TextInputLayout inputEmail;
+    private TextInputLayout inputPassword;
     private Button buttonLogin;
 
     @Override
@@ -20,15 +27,18 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        email = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
+        inputEmail = (TextInputLayout) findViewById(R.id.input_email);
+        inputPassword = (TextInputLayout) findViewById(R.id.input_password);
         buttonLogin = (Button) findViewById(R.id.button_login);
 
-        password.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        // replace characters with discs
+        inputPassword.getEditText().setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+        inputPassword.getEditText().setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView view, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    login(email.getText().toString(), password.getText().toString());
+                    login(inputEmail.getEditText().getText().toString(), inputPassword.getEditText().getText().toString());
                     return true;
                 }
                 return false;
@@ -38,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                login(email.getText().toString(), password.getText().toString());
+                login(inputEmail.getEditText().getText().toString(), inputPassword.getEditText().getText().toString());
             }
         });
     }
@@ -49,6 +59,15 @@ public class LoginActivity extends AppCompatActivity {
      * @param password password to use for login
      */
     private void login(String email, String password) {
-        // TODO: Perform login
+        try {
+            ResourceOwnerPasswordCredentialsGrant grant = new ResourceOwnerPasswordCredentialsGrant(this, new ClientCredentials(this));
+            AccessToken accessToken = grant.getAccessToken(email, password);
+
+            startActivity(new Intent(this, MainActivity.class));
+        } catch (OAuthException exception) {
+            if (exception.getError().equals("unauthenticated_user")) {
+                inputPassword.setError("Error authenticating!");
+            }
+        }
     }
 }
