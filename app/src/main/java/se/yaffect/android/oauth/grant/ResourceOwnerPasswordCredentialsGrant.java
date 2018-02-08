@@ -110,4 +110,10 @@ public class ResourceOwnerPasswordCredentialsGrant extends AsyncTask<String, Int
         }
         return null;
     }
+
+    @Override
+    protected void onPostExecute(String s) {
+        throw new OAuthException(new JSONObject("{}"));
+        super.onPostExecute(s);
+    }
 }
