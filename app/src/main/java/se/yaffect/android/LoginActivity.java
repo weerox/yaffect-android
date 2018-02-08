@@ -2,6 +2,7 @@ package se.yaffect.android;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.method.PasswordTransformationMethod;
@@ -67,6 +68,9 @@ public class LoginActivity extends AppCompatActivity {
         } catch (OAuthException exception) {
             if (exception.getError().equals("unauthenticated_user")) {
                 inputPassword.setError("Error authenticating!");
+            } else {
+                // show error as snackbar
+                Snackbar.make(findViewById(R.id.layout_main), R.string.error_connection_oauth, Snackbar.LENGTH_SHORT).show();
             }
         }
     }

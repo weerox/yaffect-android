@@ -15,4 +15,6 @@
     <string name="login_password">Password</string>
     <string name="login_signin">Sign In</string>
     <string name="login_register">Register</string>
+
+    <string name="error_connection_oauth">There was an error connecting to the server.</string>
 </resources>
